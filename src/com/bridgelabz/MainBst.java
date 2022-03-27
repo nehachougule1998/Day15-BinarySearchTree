@@ -18,9 +18,12 @@ public static void main(String[] args) {
 		tree.add(65);
 		tree.add(63);
 		tree.add(67);
-	    tree.print();
-	    
-	    int size = tree.getSize();
+		
+	    tree.levelPrint();
+		int size = tree.getSize();
 		System.out.println(size);
-		}
-	}
+		tree.search(30);
+		tree.print();
+		
+       }
+}
