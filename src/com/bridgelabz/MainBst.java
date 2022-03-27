@@ -1,16 +1,13 @@
 package com.bridgelabz;
 
 public class MainBst {
-	 public static void main(String[] args) {
 
-	        System.out.println("welcome to BTS program");
-            BinaryTree bst = new BinaryTree();
-	        INode root = null;
-
-	        root = bst.insert(root, 56);
-	        root = bst.insert(root, 30);
-	        root = bst.insert(root, 70);
-	        bst.print(root);
-	 }
+public static void main(String[] args) {
+		
+		BinaryTree<Integer> tree = new BinaryTree<>();
+		tree.add(56);
+		tree.add(30);
+		tree.add(70);
+	    tree.print();
+		}
 }
-	

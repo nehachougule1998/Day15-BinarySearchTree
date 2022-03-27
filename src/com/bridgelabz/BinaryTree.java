@@ -1,40 +1,50 @@
 package com.bridgelabz;
 
-public class BinaryTree {
+import java.util.Stack;
 
+import org.w3c.dom.Node;
 
-    public INode insert(INode root, int val) {
+public class BinaryTree<K extends Comparable<K>>{
+	
+	private INode<K> root;
 
-        if (root == null) {
-            return craeteNewNode(val);
-        }
-        if (val < root.data) {
-            root.left = insert(root.left, val);
-        } else if (val > root.data) {
-            root.right = insert(root.right, val);
-        }
-        return root;
+	public void add(K key) {
+		this.root = this.addRecursively(root, key);
+	}
 
-    }
-    public INode craeteNewNode(int k) {
-        INode bst = new INode();
+	private INode<K> addRecursively(INode<K> current, K key) {
+		if (current == null)
+			return new INode<>(key);
+		int compareResult = key.compareTo(current.key);
+		if (compareResult == 0)
+			return current;
+		if (compareResult < 0) {
+			current.left = addRecursively(current.left, key);
 
-        bst.data = k;
-        bst.left = null;
-        bst.right = null;
-        return bst;
-    }
+		} else {
+			current.right = addRecursively(current.right, key);
+		}
+		return current;
+	}
 
-    public void print(INode root) {
-        if (root == null) {
-            return;
-        }
-        print(root.left);
-        System.out.println(root.data);
-        print(root.right);
+	public int getSize() {
+		return this.getSizeRecursively(root);
+	}
+	
+	private int getSizeRecursively(INode<K> current) {
+		return current == null ? 0 : 1 + this.getSizeRecursively(current.left) + this.getSizeRecursively(current.right);
+	}
 
-    }
+	public void print() {
+		printRec(root);
+	}
 
+	void printRec(INode root) {
+		if (root != null) {
+			printRec(root.left);
+			System.out.println(root.key);
+			printRec(root.right);
+		}
+	}
 }
-
 
